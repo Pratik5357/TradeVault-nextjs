@@ -2,14 +2,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Navbar() {
-  const { data: session, status } = useSession();
+   const { data: session, status } = useSession();
 
   useEffect(() => {
     // Refresh the page when the session changes
-    if (session) {
+    if (status === "authenticated") {
       window.location.reload();
     }
   }, [status]);
