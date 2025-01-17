@@ -9,7 +9,7 @@ export default function Navbar() {
 
   useEffect(() => {
     // Refresh the page when the session changes
-    if (status === "authenticated") {
+    if (session) {
       window.location.reload();
     }
   }, [status]);
