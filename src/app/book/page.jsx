@@ -2,21 +2,9 @@
 
 import React from 'react'
 import sampleData from '../../../public/sample'
-import { useEffect } from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-
 
 export default function page() {
-  const { data: session, status } = useSession();
-    const router = useRouter();
-
-    useEffect(() => {
-        if (status === 'unauthenticated') {
-            router.push('/sign-in');
-        }
-    }, [status, router]);
-
+  
   return (
     <div className="conBox mx-auto max-md:w-[380px] w-[850px] p-6 border rounded-xl">
       <h1 className='text-2xl pb-4 border-b mb-10'>Trade details</h1>
