@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 
 export default function Navbar() {
+  const { data: session } = useSession();
 
   return (
     <div className='nav max-md:w-[380px] w-[850px] mx-auto border mb-5 px-6 py-3 rounded-xl flex justify-between items-center'>
