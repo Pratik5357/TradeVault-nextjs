@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import sampleData from '../../../public/sample'
 import { useEffect } from 'react';
