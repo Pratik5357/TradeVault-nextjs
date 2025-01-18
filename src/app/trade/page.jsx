@@ -1,16 +1,29 @@
 'use client';
 
 import React, { useState } from 'react'
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+
 const Months = ["month", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 
 export default function page() {
     const [data, setData] = useState({
-        premiumType: '',
-        month: '',
-        strikePrice: '',
-        options: ''
+        buyPrice: "",
+    expiryDate: "",
+    month: "",
+    note: "",
+    openingPrice: "",
+    options: "",
+    premiumType: "",
+    quantity: "",
+    sellPrice: "",
+    stoploss: "",
+    strikePrice: "",
+    target: "",
+    tradeDate: "",
     });
+    const router = useRouter();
 
     const handleChange = (e) => {
         setData({
@@ -19,13 +32,21 @@ export default function page() {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log(data);
+        try {
+            const res = await axios.post('http://localhost:3000/api/data/trade', data);
+            console.log(res.data);
+            router.push('/book');
+        }
+        catch (error) {
+            console.log(error);
+        }
+
     }
     return (
         <div className='conBox mx-auto max-md:w-[380px] w-[850px] max-md:p-8 p-10 border rounded-xl overflow-y-scroll custom-scroll'>
-            <h1 className='text-3xl text-center border-b pb-4 mb-4 font-mono font-semibold'>Record Your Market Moves</h1>
+            <h1 className='text-3xl text-center [text-shadow:_0_2px_5px_rgb(0_0_0_/_40%)] pb-4 mb-4 font-mono font-semibold'>Record Your Market Moves</h1>
             <form onSubmit={handleSubmit} className='mb-12 '>
                 <p className='text-xl mb-2 border-b pb-2'>Day details:</p>
                 <div className='py-2'>
