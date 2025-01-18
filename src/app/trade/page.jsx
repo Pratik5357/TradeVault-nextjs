@@ -35,7 +35,7 @@ export default function page() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:3000/api/data/trade', data);
+            const res = await axios.post('https://trade-vault-nextjs.vercel.app/api/data/trade', data);
             console.log(res.data);
             router.push('/book');
         }
