@@ -3,6 +3,7 @@
 import Skeleton from '@/components/Skeleton';
 import TradePreview from '@/components/TradePreview';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function Page() {
   const [data, setData] = useState([]);
@@ -11,12 +12,8 @@ export default function Page() {
 
   const sendRequest = async () => {
     try {
-      const res = await fetch('https://trade-vault-nextjs.vercel.app/api/data/book');
-      if (!res.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      const responseData = await res.json();
-      setData(responseData.message || []); // Ensure data is an array
+      const res = await axios.get('https://trade-vault-nextjs.vercel.app/api/data/book');
+      setData(res.data.message || []); // Ensure data is an array
     } catch (error) {
       console.error("Error fetching data:", error.message);
       setData([]); // Set to empty array on error
